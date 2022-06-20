@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Buy Books</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+
+<body>
+
+<style>
+
+  .content{
+    background-color: rgb(179, 179, 218);
+    margin: 0 auto;
+    width: 30%;
+    padding: 50px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+  }
+
+  .logo{
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  a{
+    text-decoration: none;
+  }
+  
+  .msgErro{
+  	text-align: center;
+  	color: red;
+  }
+  
+  .msgOk{
+  	text-align: center;
+  	color: green;
+  }
+
+</style>
+
+  <div class="logo">
+    <img width="200px" src="https://i.ibb.co/HTd3ZT7/logotipo.jpg" />
+  </div>
+
+  <div class="content">
+  	
+  	<div th:if="${ok}">
+  		<p class="msgOk"> Usuário <span style="color: blue;" th:text="${ok}"></span> foi cadastrado com sucesso.</p>
+  		
+  		<style>
+  			input, button{
+  				display:none !important;
+  			}
+  		</style>
+  	</div>
+  
+  	<div th:if="${erro}">
+  		<p class="msgErro" th:text="${erro}"></p>
+  	</div>
+    
+    <form th:action="@{/cadastro}" method="post">
+
+		<input name="username" type="text" class="form-control mb-3" placeholder="Usuário"/>
+		<input name="password" type="password" class="form-control mb-3" placeholder="Senha"/>
+		<input name="repeatPassword" type="password" class="form-control mb-3" placeholder="Repetir Senha"/>     
+      
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Cadastrar</button>
+      
+      	<div class="text-center">
+          <p>Ir para <a th:href="@{/login}">Login</a></p>
+        </div>
+        
+      </form>
+
+  </div>
+
+</body>
+
+</html>

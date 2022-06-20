@@ -1,0 +1,73 @@
+
+	<!doctype html>
+	<html lang="pt-br">
+
+		<head th:replace="~{base :: head}"></head>
+
+		<style>
+
+			.card{
+				display: inline-block;
+				width: 25%;
+			}
+			
+			.content-cards{
+				text-align: center;
+			}
+			
+			.boas-vindas{
+	            text-align: center;
+	            color: #aaa;
+	            margin-bottom: 50px;
+        	}
+
+			.msgOk{
+				text-align: center;
+				color: green;
+			}
+			
+		</style>
+
+		<body>
+			
+		  <nav th:replace="~{base :: nav}"></nav>
+			
+		  	<div class="msgOk" th:if="${mensagem}">
+				<p><i class="far fa-check-circle"></i> <span th:text="${mensagem}"></span></p>
+			</div>
+
+			<div class="content-cards">
+											
+						<div class="boas-vindas">
+							<h3>Seja bem-vindo ao e-buybooks, boas compras e boas leituras! ;D</h3>
+						</div>
+
+						<div th:each="livro : ${livros}" class="card me-4">
+	                  
+		                    <img th:src="${livro.urlCapa}" style="height: 300px;" class="card-img-top" alt="...">
+		                    <div class="card-body">
+		                     	                        
+		                        <h5 class="card-title" th:text="${livro.titulo}"></h5>
+		                        <p class="card-title" th:text="${livro.autor}"></p>
+								<h1 class="card-title" th:text="${livro.valor}"></h1>
+		                        	
+		                        <form th:action="@{/home}" method="post">
+		                        	
+		                          <input type="hidden" name="titulo" th:value="${livro.titulo}"/>
+		                          <input type="hidden" name="autor" th:value="${livro.autor}"/>
+		                          <input type="hidden" name="urlCapa" th:value="${livro.urlCapa}"/>
+								  <input type="hidden" name="valor" th:value="${livro.valor}"/>
+		                        
+					              <button class="btn btn-primary" type="submit">Add Carrinho</button>
+					            </form>
+		                        
+		                    </div>
+	                    
+                		</div>
+					
+			</div>
+	
+	
+		 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+	  </body>
+	</html>
